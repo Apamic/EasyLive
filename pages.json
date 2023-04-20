@@ -1,0 +1,135 @@
+{	
+	"easycom": {
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "首页",
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/mine/mine",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "我的",
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/post/post",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "岗位",
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/community/community",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "社区",
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/job/myJob",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "我的工作",
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/dailyPaper/dailyPaper",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "工作日报",
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/dailyPaper/write",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "写日报",
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/resume/resume",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "我的简历",
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "登录",
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/login/code",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "验证码",
+					"titleNView": false
+				}
+			}
+		}
+	],
+	"tabBar": {
+		"color": "#818AA0",	
+		"selectedColor": "#1250E5",
+		"backgroundColor": "#fff",
+		"list" :[
+			{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/tabBar/home.png",
+				"selectedIconPath": "static/tabBar/home-ac.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/community/community",
+				"iconPath": "static/tabBar/community.png",
+				"selectedIconPath": "static/tabBar/community-ac.png",
+				"text": "北漂之家"
+			},
+			{
+				"pagePath": "pages/post/post",
+				"iconPath": "static/tabBar/post.png",
+				"selectedIconPath": "static/tabBar/post-ac.png",
+				"text": "工作岗位"
+			},
+			{
+				"pagePath": "pages/mine/mine",
+				"iconPath": "static/tabBar/mine.png",
+				"selectedIconPath": "static/tabBar/mine-ac.png",
+				"text": "我的中心"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "天天好活",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}
