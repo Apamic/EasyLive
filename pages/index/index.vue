@@ -26,10 +26,8 @@
 						<image src="../../static/icon/broadcast.png" mode="widthFix" style="width: 40rpx;"></image>
 					</view>
 					
-					<text class="secondary-text">今日入住人数 10</text>
-					
+					<text class="secondary-text">今日入住人数 10</text>	
 				</view>
-				
 				
 				<scroll-view scroll-x style="margin-bottom: 20rpx;">
 					<view class="flex">
@@ -40,11 +38,10 @@
 					</view>
 				</scroll-view>
 				
-				
 				<view class="grid">
-					<image src="@/static/index/1.png" mode="widthFix" style="width: 420rpx;grid-column: 1 / 3;grid-row: 1 / 3;"></image>
-					<image src="@/static/index/2.png" style="width: 252rpx;height: 96rpx;"></image>
-					<image src="@/static/index/3.png" style="width: 252rpx;height: 96rpx; align-self:end;"></image>
+					<image src="@/static/index/1.png" mode="widthFix" style="width: 420rpx;grid-column: 1 / 3;grid-row: 1 / 3;" @click="$refs.purposePop.show = true"></image>
+					<image src="@/static/index/2.png" style="width: 252rpx;height: 96rpx;" @click="$tools.jump('./careerPlanning')"></image>
+					<image src="@/static/index/3.png" style="width: 252rpx;height: 96rpx; align-self:end;" @click="$tools.jump('./cultivate')"></image>
 				</view>
 			</view>
 		</view>
@@ -89,13 +86,13 @@
 				
 		</view>
 		
-		
+		<purposePop ref="purposePop"></purposePop>
 	</view>
 </template>
 
 <script>
 	import jobRow from "@/components/jobRow.vue"
-	
+	import purposePop from "./components/purposePop.vue"
 	
 	export default {
 		data() {
@@ -118,7 +115,8 @@
 		},
 		
 		components: {
-			jobRow
+			jobRow,
+			purposePop
 		}
 	}
 </script>

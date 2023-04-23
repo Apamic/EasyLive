@@ -92,6 +92,87 @@
 					"titleNView": false
 				}
 			}
+		},
+		{
+			"path": "pages/index/checkIn",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "入住",
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/index/careerPlanning",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "职业规划",
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/index/cultivate",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "报名培训",
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/job/jobDetails",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "岗位详情",
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/job/clockIn",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "工作打卡",
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/job/jobSettle",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "工作结算",
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/setting/setting",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "设置",
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/setting/realName",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "实名认证",
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/community/videoPlay",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "培训课程",
+					"titleNView": false
+				}
+			}
 		}
 	],
 	"tabBar": {

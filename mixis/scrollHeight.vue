@@ -1,27 +1,10 @@
 <template>
 	<view>
-		<navTop :title="'我的简历'">
-			<view>上传简历</view>
-		</navTop>
-		
-		<scroll-view scroll-y class="scroll-wrap" :style="{height:navHeight+'px'}">
-			<view class="grid" style="padding: 30rpx 20rpx;">
-				<template v-for="(item,index) in 6">
-					<resumeCard :key="index"></resumeCard>
-				</template>
-			</view>
-			
-		</scroll-view>
-		
 		
 	</view>
 </template>
 
 <script>
-	import navTop from '@/components/navTop.vue'
-	import resumeCard from './components/resumeCard.vue'
-	
-	
 	export default {
 		data() {
 			return {
@@ -29,7 +12,6 @@
 				navHeight:0, //元素的所需高度
 			}
 		},
-		
 		
 		onReady() {
 			let that=this;
@@ -48,27 +30,11 @@
 		
 		methods: {
 			
-		},
-		
-		
-		components: {
-			navTop,
-			resumeCard
 		}
 		
 	}
+	
 </script>
 
-<style lang="scss" scoped>
-	.grid {
-		display: grid;
-		grid-template-columns:repeat(2, 1fr);
-		grid-row-gap: 20rpx;
-		// grid-column-gap: 20rpx;
-		// align-items: center;
-		justify-items:center;
-	}
-	
-	
-	
+<style>
 </style>
