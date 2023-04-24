@@ -82,9 +82,8 @@
 	
 	.but {
 		width: 360rpx;
-		background: #1250E5;
 		color: #fff;
-		font-size: 13rpx;
+		background: #1250E5;
 	}
 	
 </style>

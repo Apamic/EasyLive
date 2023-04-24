@@ -13,7 +13,7 @@
 			}
 		},
 		
-		onReady() {
+		mounted() {
 			let that=this;
 			uni.getSystemInfo({ //调用uni-app接口获取屏幕高度
 				success:(res) => { //成功回调函数

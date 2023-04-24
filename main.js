@@ -8,9 +8,17 @@ import Vue from 'vue'
 Vue.config.productionTip = false
 App.mpType = 'app'
 
+import request from "@/common/request.js"
+Vue.prototype.$request = request
+
+import store from 'storejs'
+Vue.prototype.$store = store;
 
 import tools from '@/common/tools.js'
 Vue.prototype.$tools = tools
+
+
+import  '@/common/filters.js'
 
 try {
   function isPromise(obj) {

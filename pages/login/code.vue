@@ -33,13 +33,20 @@
 		data() {
 			return {
 				code: '',
-				second: 5,
+				second: 60,
 				timer: null,
-				sendState: false
-				
+				sendState: false,
+				phone: ''
 			}
 		},
 		
+		
+		onLoad(option) {
+			if (option.phone) {
+				this.phone = option.phone
+			}
+			
+		},
 		
 		onReady() {
 			this.setTime()
@@ -49,17 +56,36 @@
 		methods: {
 			onFinish(e) {
 				console.log(e)
+				let {phone,code} = this
 				
-				uni.switchTab({
-					url: '../index/index'
+				let params = {
+					phone,
+					code
+				}
+				
+				this.$request(`/user/empLogin${this.$u.queryParams(params)}`,{},'GET').then(res => {
+					console.log(res.token)
+					this.$store.set("easyLive-token", res.token)
+					this.$tools.toast('登录成功')
+					setTimeout(() => {
+						uni.switchTab({
+							url: '../index/index'
+						})
+					},1500)
 				})
+				
 			},
 			
 			
 			onSend() {
-				this.second = 60
-				this.sendState = false
-				this.setTime()
+				this.$request('/user/sendmessage',{
+					phone: this.phone
+				}).then(res => {
+					this.$tools.toast('发送成功')
+					this.second = 60
+					this.sendState = false
+					this.setTime()
+				})
 			},
 			
 			setTime() {

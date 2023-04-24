@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "storejs": "^2.0.3",
     "uview-ui": "^2.0.31"
   }
 }

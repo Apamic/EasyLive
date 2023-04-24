@@ -173,7 +173,17 @@
 					"titleNView": false
 				}
 			}
+		},
+		{
+			"path": "pages/index/jobFair",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "招聘会",
+					"titleNView": false
+				}
+			}
 		}
+		
 	],
 	"tabBar": {
 		"color": "#818AA0",	

@@ -21,7 +21,7 @@
 				</view>
 			</view>
 			
-			<view class="value-wrap">
+			<view class="value-wrap flex-1" style="margin-top: 20rpx;">
 				<view class="item">
 					<text style="font-size: 34rpx;">--</text>
 					<text>钱包余额</text>
@@ -40,6 +40,14 @@
 				</view>
 			</view>
 			
+			
+			<view class="vip-wrap" >
+				<image src="@/static/icon/vip0.png" mode="widthFix" style="width: 30rpx;"></image>
+				<text class="level">
+					暂未开放会员等级
+				</text>
+			</view>
+			
 		</view>
 		
 		<view class="wrap">
@@ -56,15 +64,15 @@
 					<text>我的工作</text>
 				</view>
 				<view class="flex-column align-center item">
-					<image src="@/static/mine/ic2.png" mode="widthFix" style="width: 78rpx;"></image>
+					<image src="@/static/mine/ic2.png" mode="widthFix" style="width: 78rpx;" @click="$tools.toast('暂未开放')"></image>
 					<text>我的推荐</text>
 				</view>
 				<view class="flex-column align-center item">
-					<image src="@/static/mine/ic3.png" mode="widthFix" style="width: 78rpx;"></image>
+					<image src="@/static/mine/ic3.png" mode="widthFix" style="width: 78rpx;" @click="$tools.toast('暂未开放')"></image>
 					<text>积分商城</text>
 				</view>
 				<view class="flex-column align-center item">
-					<image src="@/static/mine/ic4.png" mode="widthFix" style="width: 78rpx;"></image>
+					<image src="@/static/mine/ic4.png" mode="widthFix" style="width: 78rpx;" @click="$tools.toast('暂未开放')"></image>
 					<text>我的投稿</text>
 				</view>
 				<view class="flex-column align-center item">
@@ -72,19 +80,19 @@
 					<text>工作日报</text>
 				</view>
 				<view class="flex-column align-center item">
-					<image src="@/static/mine/ic6.png" mode="widthFix" style="width: 78rpx;"></image>
+					<image src="@/static/mine/ic6.png" mode="widthFix" style="width: 78rpx;" @click="$tools.toast('暂未开放')"></image>
 					<text>我的证书</text>
 				</view>
 				<view class="flex-column align-center item">
-					<image src="@/static/mine/ic7.png" mode="widthFix" style="width: 78rpx;"></image>
+					<image src="@/static/mine/ic7.png" mode="widthFix" style="width: 78rpx;" @click="$tools.toast('暂未开放')"></image>
 					<text>合伙人申请</text>
 				</view>
 				<view class="flex-column align-center item">
-					<image src="@/static/mine/ic8.png" mode="widthFix" style="width: 78rpx;"></image>
+					<image src="@/static/mine/ic8.png" mode="widthFix" style="width: 78rpx;" @click="$tools.toast('暂未开放')"></image>
 					<text>我的合同</text>
 				</view>
 				<view class="flex-column align-center item">
-					<image src="@/static/mine/ic9.png" mode="widthFix" style="width: 78rpx;"></image>
+					<image src="@/static/mine/ic9.png" mode="widthFix" style="width: 78rpx;" @click="$tools.toast('暂未开放')"></image>
 					<text>我的保险</text>
 				</view>
 			</view>
@@ -116,14 +124,15 @@
 <style lang="scss" scoped>
 	
 	.bj {
-		padding: 0 37rpx;
-		height: 600rpx;
+		display: flex;
+		flex-direction: column;
+		height: 460rpx;
 		background: url('@/static/mine/bj.png') no-repeat;
 		background-size: 100% 100%;
 	}
 	
 	.heads {
-		padding: 50rpx 0;
+		padding: 60rpx 37rpx;
 	}
 	
 	.info {
@@ -186,7 +195,24 @@
 				font-size: 24rpx;
 			}
 		}
+	}
+	
+	.vip-wrap {
+		padding: 34rpx 70rpx;
+		width: 100%;
+		height: 123rpx;
+		background: url("@/static/mine/vipGroup.png") no-repeat;
+		background-size: 100% 100%;
 		
+		image {
+			margin-right: 20rpx;
+		}
+		
+		.level {
+			color: #FFC772;
+			font-size: 26rpx;
+		}
 		
 	}
+	
 </style>

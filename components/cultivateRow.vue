@@ -1,6 +1,6 @@
 <template>
-	<view class="row-wrap flex flex-between">
-		<view class="flex-column flex-between">
+	<view class="row-wrap flex flex-between" :style="{flexDirection: direction}">
+		<view class="flex-column flex-between flex-1">
 			<text style="color: #7A8393;font-size: 22rpx;">3月2日-3月10日</text>
 			<text style="font-size: 34rpx;color: #000000;font-weight: 700;">猪猪酒店客房培训</text>
 			<view class="flex">
@@ -13,7 +13,7 @@
 			</view>
 		</view>
 		<view>
-			<image src="../../../static/logo.png" style="width: 222rpx;height: 150rpx;"></image>
+			<image src="@/static/logo.png" style="margin-right: 20rpx; width: 222rpx;height: 150rpx;"></image>
 		</view>
 	</view>
 </template>
@@ -22,7 +22,10 @@
 	export default {
 		
 		props: {
-			
+			direction: {
+				type: String,
+				default: 'row'
+			}
 		},
 		
 		data() {

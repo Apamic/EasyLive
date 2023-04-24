@@ -44,29 +44,42 @@
 </template>
 
 <script>
+	import verification from "@/common/verification.js"
 	export default {
 		data() {
 			return {
 				phone: '',
-				
-				
 				allow: false
 			}
 		},
 		
+		onReady() {
+			
+		},
+		
+		
 		methods: {
 			
 			radioChange(n) {
-				console.log(n,this.allow)
+				// console.log(n,this.allow)
 				this.allow = !this.allow
-				console.log(n,this.allow)
+				// console.log(n,this.allow)
 			},
 			
 			
 			code() {
-				
 				if (this.allow) {
-					this.$tools.jump('./code')
+					if(!verification.mobile(this.phone)) return this.$tools.toast("请输入正确手机号!")
+					
+					this.$request('/user/sendmessage',{
+						phone: this.phone
+					}).then(res => {
+						console.log(res)
+						this.$tools.jump(`./code?phone=${this.phone}`)
+					})
+					
+				} else {
+					this.$tools.toast('请勾选服务协议')
 				}
 				
 			}

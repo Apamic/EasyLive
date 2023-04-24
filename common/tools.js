@@ -1,3 +1,4 @@
+import stroe from "storejs"
 const tools = {};
 
 // 后退
@@ -33,9 +34,24 @@ tools.toast=(val)=>{
 
 //页面跳转
 tools.jump=(path)=>{
-	uni.navigateTo({
-		url:path
-	})
+	const token = stroe.get("easyLive-token") || ''
+	if (token) {
+		uni.navigateTo({
+			url:path
+		})
+	} else {
+		uni.showToast({
+			title: '请登录',
+			icon: 'none',
+			duration:1500
+		})
+		
+		setTimeout(() => {
+			uni.navigateTo({
+				url:'../login/login'
+			})
+		},1500)
+	}
 }
 
 //关闭当前页面，跳转到应用内的某个页面

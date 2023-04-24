@@ -47,7 +47,7 @@
 
 <script>
 	import navTop from '@/components/navTop.vue'
-	import cultivateRow from './components/cultivateRow.vue'
+	import cultivateRow from '@/components/cultivateRow.vue'
 	import scrollHeight from "@/mixis/scrollHeight.vue"
 	export default {
 		mixins:[scrollHeight],
