@@ -1,23 +1,23 @@
 <template>
 	<view class="card-content">
 		<view class="item flex">
-			<image src="@/static/logo.png" mode="widthFix" style="width: 144rpx;border-radius: 10rpx;"></image>
+			<image :src="item.enterpriseImage" mode="widthFix" style="width: 144rpx;border-radius: 10rpx;"></image>
 			<view class="flex-1 flex-column flex-between" style="padding-left: 30rpx;">
 				<view class="flex-between align-center">
 					<text class="name">
-						服务员
+						{{item.positionName}}
 					</text>
 					<text class="value">
-						30元/小时
+						{{item.salary}}元/{{item.salaryType}}
 					</text>
 				</view>
 				<view>
 					<text style="font-size: 22rpx;color: #7A8393;">
-						猪猪大酒店
+						{{item.workingPlace}}
 					</text>
-					<text style="font-size: 22rpx;color: #20B387;">
+					<!-- <text style="font-size: 22rpx;color: #20B387;">
 						12km
-					</text>
+					</text> -->
 				</view>
 				<view class="flex">
 					<view style="margin-right: 10rpx;">
@@ -28,7 +28,7 @@
 						<u-tag  text="3月2日-3月10日" size="mini" bgColor="#F3F5F9" borderColor="#F3F5F9" color="#7A8393"></u-tag>
 					</view>
 					
-					<u-tag text="日结" size="mini" bgColor="#F3F5F9" borderColor="#F3F5F9" color="#7A8393"></u-tag>
+					<u-tag :text="item.salaryType" size="mini" bgColor="#F3F5F9" borderColor="#F3F5F9" color="#7A8393"></u-tag>
 				</view>
 			</view>
 		</view>
@@ -37,6 +37,14 @@
 
 <script>
 	export default {
+		
+		props:{
+			item: {
+				type: Object,
+				default: () => {}
+			}
+		},
+		
 		data() {
 			return {
 				

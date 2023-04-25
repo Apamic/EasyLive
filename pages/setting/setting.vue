@@ -2,7 +2,7 @@
 	<view>
 		<navTop :title="'设置'"></navTop>
 		<view class="content-wrap">
-			<view class="row flex-between align-center">
+			<view class="row flex-between align-center" @click="$tools.jump('./realName')">
 				<text class="label">实名认证</text>
 				<u-icon name="arrow-right" size="20"></u-icon>
 			</view>

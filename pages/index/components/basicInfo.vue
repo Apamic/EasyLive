@@ -40,11 +40,11 @@
 			
 			<view class="item-wrap">
 				<view class="item flex-between align-center">
-					<image src="@/static/logo.png" mode="widthFix" ></image>
+					<image :src="`../../static/index/man.png`" mode="widthFix" ></image>
 					<text>男</text>
 				</view>
 				<view class="item flex-between align-center">
-					<image src="@/static/logo.png" mode="widthFix" ></image>
+					<image :src="`../../static/index/woman.png`" mode="widthFix" ></image>
 					<text>女</text>
 				</view>
 			</view>

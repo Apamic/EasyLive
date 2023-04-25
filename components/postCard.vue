@@ -6,14 +6,13 @@
 		<view class="row">
 			<text class="label">起始日期:</text>
 			<text class="val">
-				客房服务员 收拾客房内宿，服从酒店领导
-				管理安排
+				2023/03/01 -  2023/02/22
 			</text>
 		</view>
 		<view class="row">
 			<text class="label">上班时间:</text>
 			<text class="val">
-				2023/03/01 -  2023/02/22
+				{{item.workHours}} - {{item.closingIme}}
 			</text>
 		</view>
 		<view class="row">
@@ -31,20 +30,19 @@
 		<view class="row">
 			<text class="label">岗位职责:</text>
 			<text class="val">
-				客房服务员 收拾客房内宿，服从酒店领导
-				管理安排
+				{{item.positionDes}}
 			</text>
 		</view>
 		<view class="row">
 			<text class="label">工作薪资:</text>
 			<text class="val">
-				30元/小时
+				{{item.salary}}元/{{item.salaryType}}
 			</text>
 		</view>
 		<view class="row">
 			<text class="label">性别:</text>
 			<text class="val">
-				不限
+				{{item.sex}}
 			</text>
 		</view>
 		<view class="row">
@@ -62,13 +60,13 @@
 		<view class="row">
 			<text class="label">工作福利:</text>
 			<text class="val">
-				包食宿
+				{{item.positionBenefits}}
 			</text>
 		</view>
 		<view class="row">
 			<text class="label">要求:</text>
 			<text class="val">
-				健康证
+				{{item.requirements}}
 			</text>
 		</view>
 		<view class="row">
@@ -80,7 +78,7 @@
 		<view class="row">
 			<text class="label">其他要求:</text>
 			<text class="val">
-				无
+				{{item.others || '无'}}
 			</text>
 		</view>
 	</view>
@@ -90,7 +88,10 @@
 	export default {
 		
 		props: {
-			
+			item: {
+				type: Object,
+				default: () => {}
+			}
 		},
 		
 		data() {

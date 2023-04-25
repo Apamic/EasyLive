@@ -12,10 +12,10 @@
 			</view>
 			
 			<view class="flex">
-				<view @click="show = true" style="margin-left: 50rpx;">
+				<!-- <view @click="show = true" style="margin-left: 50rpx;">
 					<text>距离</text>
 					<image src="../../../static/icon/unfold.png" mode="widthFix" style="width: 20rpx;"></image>
-				</view>
+				</view> -->
 				
 				<view @click="show = true" style="margin-left: 50rpx;">
 					<text>职业类型</text>

@@ -110,6 +110,7 @@
 <style lang="scss" scoped>
 	.wrap {
 		padding: 20rpx 10rpx;
+		height: 120rpx;
 	}
 	
 	.list-wrap {

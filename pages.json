@@ -169,7 +169,7 @@
 			"path": "pages/community/videoPlay",
 			"style": {
 				"app-plus":{
-					"navigationBarTitleText": "培训课程",
+					"navigationBarTitleText": "视频播放",
 					"titleNView": false
 				}
 			}
@@ -182,8 +182,16 @@
 					"titleNView": false
 				}
 			}
+		},
+		{
+			"path": "pages/community/postDetails",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "员工帖子",
+					"titleNView": false
+				}
+			}
 		}
-		
 	],
 	"tabBar": {
 		"color": "#818AA0",	

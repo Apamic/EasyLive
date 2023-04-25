@@ -16,6 +16,7 @@ const request = (url, data, type,loading = true) => {
 				"content-type": "application/x-www-form-urlencoded",
 				"token": token,
 			},
+			dataType: 'json'
 		}
 		
 		if (loading) {
@@ -25,15 +26,13 @@ const request = (url, data, type,loading = true) => {
 			})
 		}
 		uni.request(httpDefaultOpts).then(res => {
-			console.log(res)
+			//console.log(res)
 			
 			if (res.statusCode == 200) {
 				resolve(res.data)
 				
-				
-				
 			} else {
-				reject(res)
+				resolve(res)
 				uni.showToast({
 					title: '请求异常!',
 					duration: 1500,
@@ -68,7 +67,10 @@ const request = (url, data, type,loading = true) => {
 			// 		icon: "none"
 			// 	})
 			// }
-		})
+		}).catch((response) => {
+				reject(response)
+			}
+		)
 	})
 }
 

@@ -15,9 +15,9 @@
 				
 				
 				<view class="align-center">
-					<image src="@/static/icon/set.png" mode="widthFix" style="width: 40rpx;"></image>
+					<image src="@/static/icon/set.png" mode="widthFix" style="width: 40rpx;" @click="$tools.jump('../setting/setting')"></image>
 					
-					<image src="@/static/icon/service.png" mode="widthFix" style="margin-left: 50rpx;width: 43rpx;"></image>
+					<image src="@/static/icon/service.png" mode="widthFix" style="margin-left: 50rpx;width: 43rpx;" @click=""></image>
 				</view>
 			</view>
 			

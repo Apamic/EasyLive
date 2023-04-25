@@ -4,12 +4,12 @@
 			<view class="warp">
 				<view class="rect relative">
 					<view class="title align-center">
-						<image src="../../../static/icon/warning.png" mode="widthFix" style="margin-right: 10rpx; width: 36rpx;"></image>
+						<image src="@/static/icon/warning.png" mode="widthFix" style="margin-right: 10rpx; width: 36rpx;"></image>
 						<text style="color: #333C4F;font-size: 34rpx;font-weight: 700;">选择您的目的</text>
 					</view>
 					<view class="flex flex-between" style="margin-bottom: 24rpx;">
 						<view class="item" v-for="(item,index) in typeList" :key="index" :class="current == index ? 'active' : ''" @click.stop="current = index">
-							<image src="../../../static/logo.png" mode="widthFix" style="width: 60rpx;"></image>
+							<image :src="`../../static/index/${item.src}${current == index ? '-ac' : ''}.png`" mode="widthFix" style="width: 80rpx;"></image>
 							<text>{{item.name}}</text>
 						</view>
 						
@@ -38,11 +38,13 @@
 				typeList: [
 					{
 						type: 0,
-						name: '我要入住'
+						name: '我要入住',
+						src: 'checkIn'
 					},
 					{
 						type: 1,
-						name: '我要面试'
+						name: '我要面试',
+						src: 'interview'
 					},
 				]
 			}
