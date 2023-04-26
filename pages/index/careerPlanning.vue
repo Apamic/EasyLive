@@ -31,15 +31,7 @@
 		
 		<view class="fixed bottom" style="bottom: 0;right: 0;left: 0;">
 			
-			<view class="flex">
-				<view class="input-wrap align-center" style="margin-right: 20rpx;">
-					<u--input
-					    placeholder="输入内容"
-					></u--input>
-				</view>
-				
-				<u-button class="but" text="发送" size="large"></u-button>
-			</view>
+			<sendBlock @onSend="onSend"></sendBlock>
 			
 		</view>
 		
@@ -48,7 +40,7 @@
 
 <script>
 	import navTop from '@/components/navTop.vue'
-	
+	import sendBlock from '@/components/sendBlock.vue'
 	export default {
 		data() {
 			return {
@@ -57,11 +49,14 @@
 		},
 		
 		methods: {
-			
+			onSend(val) {
+				console.log(val)
+			}
 		},
 		
 		components: {
-			navTop
+			navTop,
+			sendBlock
 		}
 	}
 </script>
@@ -109,20 +104,6 @@
 	.bottom {
 		padding: 20rpx;
 		background: #fff;
-	}
-	
-	.input-wrap {
-		flex: 1;
-		background: #F6F8FC;
-		border-radius: 13rpx;
-	}
-	
-	.but {
-		width: 120rpx;
-		height: 70rpx;
-		color: #fff;
-		background: #1250E5;
-		border-radius: 13rpx;
 	}
 	
 </style>

@@ -8,12 +8,16 @@
 				<text class="label">行驶类型</text>
 			</view>
 			
-			<view class="input-wrap" @click="selectShow = true">
-				<u--input
+			<view class="input-wrap flex-between" style="padding: 0 20rpx;" @click="selectShow = true">
+				<!-- <u--input
 				    placeholder="选择交通工具"
-				    v-model="form.name"
+				    v-model="form.driveType"
 					disabled
-				></u--input>
+				></u--input> -->
+				
+				<text>
+					{{columns[0][form.driveType].label}}
+				</text>
 				
 				<u-icon name="arrow-right" size="20"></u-icon>
 				
@@ -43,8 +47,7 @@
 			<view class="input-wrap">
 				<u--input
 				    placeholder="请填写一个具体地址"
-				    v-model="form.name"
-				   
+				    v-model="form.appointmentAddress"
 				></u--input>
 			</view>
 		</view>
@@ -55,12 +58,12 @@
 			</view>
 			
 			<view class="item-wrap">
-				<view class="item flex-between align-center">
-					<text>选择日期</text>
+				<view class="item flex-between align-center" @click="calendarShow = true">
+					<text style="color: #333;">{{calendar}}</text>
 					<u-icon name="arrow-right" size="20"></u-icon>
 				</view>
-				<view class="item flex-between align-center">
-					<text>09：30</text>
+				<view class="item flex-between align-center" @click="dateShow = true">
+					<text style="color: #333;">{{time}}</text>
 					<u-icon name="arrow-right" size="20"></u-icon>
 				</view>
 			</view>
@@ -76,30 +79,86 @@
 		</view>
 		
 		
-		<u-picker :show="selectShow" :columns="columns" @confirm="confirm" @cancel="cancel"></u-picker>
+		<u-picker :show="selectShow" :columns="columns" keyName="label" @confirm="confirm" @cancel="cancel"></u-picker>
+		
+		<u-calendar :show="calendarShow" @confirm="calendarConfirm" @close="cancel"></u-calendar>
+		
+		<u-datetime-picker :show="dateShow" v-model="time" mode="time" @confirm="datetimeConfirm" @cancel="cancel"></u-datetime-picker>
+		
 		
 	</view>
 </template>
 
 <script>
 	export default {
+		props: {
+			type: {
+				type: Number,
+				default: ''
+			}
+		},
+		
 		data() {
 			return {
 				form: {
-					name: ''
+					type: this.type,
+					driveType: 0,
+					ticket: '',
+					appointmentTime: '',
+					appointmentAddress: '',
 				},
+				
+				calendar: '',
+				time: '10:00',
 				
 				fileList1: [],
 				
 				selectShow: false,
+				calendarShow: false,
+				dateShow: false,
 				
 				columns: [
-					['中国', '美国', '日本']
+					[{
+                        label: '自驾',
+                        id: 0
+                    },{
+						label: '火车',
+						id: 1
+					},{
+						label: '高铁',
+						id: 2
+					},{
+						label: '飞机',
+						id: 3
+					}]
 				]
 			}
 		},
 		
+		mounted() {
+			this.calendar = this.result(Number(new Date()),'date')
+		},
+		
+		
 		methods: {
+			
+			result(time, mode) {
+				const timeFormat = uni.$u.timeFormat,
+					toast = uni.$u.toast
+				switch (mode) {
+					case 'datetime':
+						return timeFormat(time, 'yyyy-mm-dd hh:MM')
+					case 'date':
+						return timeFormat(time, 'yyyy-mm-dd')
+					case 'year-month':
+						return timeFormat(time, 'yyyy-mm')
+					case 'time':
+						return time
+					default:
+						return ''
+				}
+			},
+			
 			deletePic(event) {
 				this[`fileList${event.name}`].splice(event.index, 1)
 			},
@@ -155,22 +214,52 @@
 			confirm(e) {
 				console.log('confirm', e)
 				
-				this.form.name = e.value[0]
+				this.form.driveType = e.value[0].id
+
 				
 				this.selectShow = false
 			},
 			
 			cancel() {
 				this.selectShow = false
+				this.dateShow = false
+				this.calendarShow = false
 			},
 			
 			back() {
 				this.$emit('back',0)
 			},
 			
-			onSubmit() {
+			async onSubmit() {
 				
-				this.$emit('next',2)
+				//console.log(this.form)
+				
+				let {appointmentAddress} = this.form
+				
+				this.form.appointmentTime = `${this.calendar} ${this.time}`
+				
+				if (!appointmentAddress) return this.$tools.toast('请填写一个具体地址')
+				 
+				let data = await this.$request('/checkIn/saveCheckIn',this.form)
+				
+				if (data) {
+					
+					this.$emit('next',2)
+				}
+			},
+			
+			datetimeConfirm(e) {
+				
+				this.dateShow = false
+			},
+			
+			calendarConfirm(e) {
+				console.log('calendarConfirm', e[0])
+				
+				this.calendar = e[0]
+				
+				
+				this.calendarShow = false
 				
 			}
 		},

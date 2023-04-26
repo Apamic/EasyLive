@@ -12,7 +12,7 @@
 			<view class="input-wrap">
 				<u--input
 				    placeholder="请输入姓名"
-				    v-model="form.name"
+				    v-model="form.checkinName"
 				   
 				  ></u--input>
 			</view>
@@ -38,13 +38,13 @@
 				<text class="label">性别</text>
 			</view>
 			
-			<view class="item-wrap">
-				<view class="item flex-between align-center">
-					<image :src="`../../static/index/man.png`" mode="widthFix" ></image>
+			<view class="item-wrap" >
+				<view class="item flex-between align-center" :class="form.sex == 0 ? 'active' : ''" @click="form.sex = 0">
+					<image :src="`../../static/index/man${form.sex == 0 ? '-ac': ''}.png`" mode="widthFix" ></image>
 					<text>男</text>
 				</view>
-				<view class="item flex-between align-center">
-					<image :src="`../../static/index/woman.png`" mode="widthFix" ></image>
+				<view class="item flex-between align-center" :class="form.sex == 1 ? 'active' : ''" @click="form.sex = 1">
+					<image :src="`../../static/index/woman${form.sex == 1 ? '-ac': ''}.png`" mode="widthFix" ></image>
 					<text>女</text>
 				</view>
 			</view>
@@ -55,15 +55,16 @@
 				<text class="label">出生日期</text>
 			</view>
 			
-			<view class="input-wrap" @click="dateTimeShow = true">
+			<view class="input-wrap flex-between" style="padding: 0 20rpx;" @click="dateTimeShow = true">
 				<!-- <u--input
 				    placeholder="请选择出生日期"
 				    v-model="form.date"
 					disabled
 				  ></u--input> -->
-				  
-				  
-				<text>{{form.date}}</text>  
+				
+				<text>{{form.date | formatTime('YMD')}}</text> 
+				 
+				<u-icon name="arrow-right" size="20"></u-icon>   
 			</view>
 		</view>
 		
@@ -89,7 +90,7 @@
 			<view class="input-wrap">
 				<u--input
 				    placeholder="请输入身份证号"
-				    v-model="form.id"
+				    v-model="form.idcard"
 					
 				  ></u--input>
 			</view>
@@ -103,7 +104,7 @@
 			<view class="input-wrap">
 				<u--input
 				    placeholder="街道/社区"
-				    v-model="form.area"
+				    v-model="form.address"
 			
 				  ></u--input>
 			</view>
@@ -114,18 +115,18 @@
 				<text class="label">身体状况</text>
 			</view>
 			<view class="item-wrap">
-				<view class="item flex-center align-center">
+				<view class="item flex-center align-center" :class="form.healthState == 0 ? 'active' : '' " @click="form.healthState = 0">
 					
 					<text>良好</text>
 				</view>
-				<view class="item flex-center align-center">
+				<view class="item flex-center align-center" :class="form.healthState == 1 ? 'active' : '' " @click="form.healthState = 1">
 					
 					<text>其他</text>
 				</view>
 			</view>
 			
 			<view class="input-wrap" style="margin-top: 20rpx;">
-				<u--textarea v-model="form.desc" placeholder="身体状况描述" confirm-type="send"></u--textarea>
+				<u--textarea v-model="form.healthStatedes" placeholder="身体状况描述" confirm-type="send"></u--textarea>
 			</view>
 			
 			
@@ -138,7 +139,7 @@
 			<view class="input-wrap">
 				<u--input
 				    placeholder="请输入您期望的薪资"
-				    v-model="form.value"
+				    v-model="form.salaryExpectation"
 					type="number"
 				  ></u--input>
 			</view>
@@ -152,9 +153,11 @@
 		
 		<u-datetime-picker
 			:show="dateTimeShow"
-			v-model="form.date"
+			v-model="form.birthDay"
 			mode="date"
 			:formatter="formatter"
+			:maxDate="Number(new Date())"
+			:minDate="0"
 			@confirm="confirm"
 			@cancel="cancel"
 		></u-datetime-picker>
@@ -166,17 +169,28 @@
 
 <script>
 	export default {
+		
+		props: {
+			type: {
+				type: Number,
+				default: ''
+			}
+		},
+		
 		data() {
 			return {
 				form: {
-					name: '',
-					gender: 0,
+					type: this.type,
+					checkinName: '',
+					sex: 0,
+					birthDay: Number(new Date()),
 					date: Number(new Date()),
 					phone: '',
-					id: '',
-					value: '',
-					condition: '',
-					desc: ''
+					idcard: '',
+					address: '',
+					healthState: 0,
+					healthStatedes: '',
+					salaryExpectation: ''
 				},
 				 
 				 
@@ -212,9 +226,11 @@
 				
 				console.log(this.result(e.value, e.mode))
 				
-				this.form.date = timeFormat(e.value, 'yyyy-mm-dd')
+				//this.form.birthDay = timeFormat(e.value, 'yyyy-mm-dd')
 				
-				console.log(this.form.date)
+				this.form.date = e.value
+				
+				console.log(this.form.birthDay)
 			},
 			
 			
@@ -223,20 +239,40 @@
 					toast = uni.$u.toast
 				switch (mode) {
 					case 'datetime':
-						return toast(timeFormat(time, 'yyyy-mm-dd hh:MM'))
+						return timeFormat(time, 'yyyy-mm-dd hh:MM')
 					case 'date':
 						return timeFormat(time, 'yyyy-mm-dd')
 					case 'year-month':
-						return toast(timeFormat(time, 'yyyy-mm'))
+						return timeFormat(time, 'yyyy-mm')
 					case 'time':
-						return toast(time)
+						return time
 					default:
 						return ''
 				}
 			},
 			
-			onSubmit() {
-				this.$emit('next',1)
+			async onSubmit() {
+				
+				console.log(this.form)
+				let {checkinName,phone,idcard,address,healthStatedes,salaryExpectation} = this.form
+				
+				if (!checkinName) return this.$tools.toast('请输入姓名')
+				if (!this.$verification.mobile(phone)) return this.$tools.toast('请输入正确的手机号')
+				if (!this.$verification.idCard(idcard)) return this.$tools.toast('请输入正确的身份证号')
+				if (!address) return this.$tools.toast('请输入街道/社区')
+				if (!healthStatedes) return this.$tools.toast('身体状况描述')
+				if (!salaryExpectation) return this.$tools.toast('请输入您期望的薪资')
+				
+				this.form.birthDay = this.result(this.form.birthDay,'date')
+	
+				let data = await this.$request('/checkIn/saveCheckIn',this.form)
+				
+				if (data) {
+					this.$emit('next',1)
+				}
+				
+				
+				
 			},
 			
 			
@@ -355,6 +391,14 @@
 				}
 				
 			}
+			
+			.active {
+				text {
+					color: #000000;
+				}
+				border: 2rpx solid #000;
+			}
+			
 		}
 		
 	}

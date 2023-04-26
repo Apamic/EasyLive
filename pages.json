@@ -191,6 +191,24 @@
 					"titleNView": false
 				}
 			}
+		},
+		{
+			"path": "pages/community/contribute",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "我的投稿",
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/community/postMessage",
+			"style": {
+				"app-plus":{
+					"navigationBarTitleText": "发稿",
+					"titleNView": false
+				}
+			}
 		}
 	],
 	"tabBar": {

@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<navTop :title="'招聘会'"></navTop>
-		<view class="content-wrap">
+		<view class="content-wrap" v-html="currentItem.activityContent">
 			
 		</view>
 		
@@ -17,12 +17,15 @@
 	export default {
 		data() {
 			return {
-				
+				currentItem: {}
 			}
 		},
 		
-		onLoad() {
-			
+		onLoad(option) {
+			if (option.item) {
+				this.currentItem = JSON.parse(option.item)
+				console.log(this.currentItem)
+			}
 		},
 		
 		methods: {
@@ -38,7 +41,7 @@
 
 <style>
 	page {
-		background: #fff;
+		/* background: #fff; */
 	}
 </style>
 
@@ -49,6 +52,7 @@
 		left: 0;
 		right: 0;
 		padding: 30rpx;
+		background: #fff;
 	}
 	
 	

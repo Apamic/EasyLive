@@ -17,6 +17,9 @@ Vue.prototype.$store = store;
 import tools from '@/common/tools.js'
 Vue.prototype.$tools = tools
 
+import verification from '@/common/verification.js'
+Vue.prototype.$verification = verification
+
 
 import  '@/common/filters.js'
 

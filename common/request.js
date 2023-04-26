@@ -29,8 +29,29 @@ const request = (url, data, type,loading = true) => {
 			//console.log(res)
 			
 			if (res.statusCode == 200) {
-				resolve(res.data)
 				
+				if(res.data.code == 1001) {
+					resolve(res.data)
+				} else if (res.data.code == 301) {
+					uni.showToast({
+						title: res.data.msg,
+						duration: 2000,
+						icon: "none"
+					})
+				} else if (res.data.code == 500) {
+					uni.showToast({
+						title: res.data.msg,
+						duration: 2000,
+						icon: "error"
+					})
+				} else {
+					reject(res.data)
+					uni.showToast({
+						title: res.data.msg,
+						duration: 2000,
+						icon: "error"
+					})
+				}
 			} else {
 				resolve(res)
 				uni.showToast({
@@ -68,7 +89,13 @@ const request = (url, data, type,loading = true) => {
 			// 	})
 			// }
 		}).catch((response) => {
+				uni.showToast({
+					title: '请求失败!',
+					duration: 1500,
+					icon: "none"
+				})
 				reject(response)
+				uni.hideLoading()
 			}
 		)
 	})

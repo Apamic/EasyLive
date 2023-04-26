@@ -33,9 +33,9 @@
 				
 				<scroll-view scroll-x style="margin-bottom: 20rpx;">
 					<view class="flex">
-						<view class="flex-column align-center" style="margin-right: 26rpx;" v-for="(item,index) in 3" :key="item" @click="$tools.jump('../community/videoPlay')">
-							<image src="../../static/logo.png" style="width: 266rpx;height: 175rpx;"></image>
-							<text style="height: 70rpx;line-height: 70rpx; color: #1D202E;font-size: 24rpx;">宿舍实况</text>
+						<view class="flex-column align-center" style="margin-right: 26rpx;" v-for="(item,index) in indexData.centerList" :key="item.id" @click="$tools.jump('../community/videoPlay?item=' + JSON.stringify(item))">
+							<image :src="item.coverImg" style="width: 266rpx;height: 175rpx;border-radius: 10rpx;"></image>
+							<text style="height: 70rpx;line-height: 70rpx; color: #1D202E;font-size: 24rpx;">{{item.videoType}}</text>
 						</view>
 					</view>
 				</scroll-view>
@@ -74,13 +74,13 @@
 				
 				<scroll-view scroll-x>
 					<view class="scroll-wrap">
-						<view class="item" v-for="(item,index) in indexData.actList" :key="item.id">
+						<view class="item" v-for="(item,index) in indexData.actList" :key="item.id" @click="$tools.jump(`../index/jobFair?item=${JSON.stringify(item)}`)">
 							<view class="flex-column flex-around">
-								<text class="secondary-text">3月2日-3月10日</text>
+								<text class="secondary-text">{{item.beginTime}}-{{item.endTime}}</text>
 								<text class="name" style="font-size: 34rpx;">{{item.activityName}}</text>
 								<text  class="secondary-text">第二期</text>
 							</view>
-							<image src="../../static/logo.png"  style="width: 210rpx;height: 140rpx;"></image>
+							<image :src="item.actImg ? item.actImg : '../../static/logo.png'"  style="width: 210rpx;height: 140rpx;"></image>
 						</view>
 					</view>	
 				</scroll-view>
@@ -99,16 +99,7 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello',
-				list1: [
-					'https://cdn.uviewui.com/uview/swiper/swiper1.png',
-					'https://cdn.uviewui.com/uview/swiper/swiper2.png',
-					'https://cdn.uviewui.com/uview/swiper/swiper3.png',
-				],
-				
 				indexData: {},
-				
-				
 			}
 		},
 		onLoad() {
@@ -128,9 +119,10 @@
 			async getToIndex() {
 				let data = await this.$request('/user/toIndex')
 				
-				this.indexData = data
-				
-				//console.log(data)
+				console.log(data)
+				if (data) {
+					this.indexData = data.data
+				}
 				
 			},
 			

@@ -1,7 +1,7 @@
 <template>
 	<view class="card-content">
 		<view class="item flex">
-			<image :src="item.enterpriseImage" mode="widthFix" style="width: 144rpx;border-radius: 10rpx;"></image>
+			<image :src="item.enterpriseImage" style="width: 144rpx;height: 144rpx;border-radius: 10rpx;"></image>
 			<view class="flex-1 flex-column flex-between" style="padding-left: 30rpx;">
 				<view class="flex-between align-center">
 					<text class="name">

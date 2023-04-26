@@ -12,7 +12,7 @@
 		</view>
 		
 		<!-- <view class="wrap"> -->
-			<view v-show="currentTab == 0" style="padding: 0 20rpx;">
+			<view v-show="currentTab == 0">
 				<forum></forum>
 			</view>
 			

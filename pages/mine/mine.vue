@@ -72,7 +72,7 @@
 					<text>积分商城</text>
 				</view>
 				<view class="flex-column align-center item">
-					<image src="@/static/mine/ic4.png" mode="widthFix" style="width: 78rpx;" @click="$tools.toast('暂未开放')"></image>
+					<image src="@/static/mine/ic4.png" mode="widthFix" style="width: 78rpx;" @click="$tools.jump('../community/contribute')"></image>
 					<text>我的投稿</text>
 				</view>
 				<view class="flex-column align-center item">

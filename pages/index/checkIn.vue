@@ -19,11 +19,11 @@
 			</view>
 			
 			<view v-show="current == 0">
-				<basicInfo @next="next"></basicInfo>
+				<basicInfo :type="currentItem.type" @next="next"></basicInfo>
 			</view>
 			
 			<view v-show="current == 1">
-				<appointmentInfo @back="next" @next="next"></appointmentInfo>
+				<appointmentInfo :type="currentItem.type" @back="next" @next="next"></appointmentInfo>
 			</view>
 			
 			<view v-show="current == 2">
@@ -44,7 +44,7 @@
 		data() {
 			return {
 				currentItem: {},
-				current: 0
+				current: 1
 			}
 		},
 		
