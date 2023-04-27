@@ -101,6 +101,23 @@
 				<text class="label">家庭住址</text>
 			</view>
 			
+			<view class="area-wrap">
+				<view class="item" @click="onSelectArea('Province')">
+					<text>{{provinceStr}}</text>
+					<u-icon name="arrow-down-fill" size="15"></u-icon>
+				</view>
+				<view class="item" @click="onSelectArea('City')">
+					<text>{{cityStr}}</text>
+					<u-icon name="arrow-down-fill" size="15"></u-icon>
+				</view>
+				<view class="item" @click="onSelectArea('Area')">
+					<text>{{areaStr}}</text>
+					<u-icon name="arrow-down-fill" size="15"></u-icon>
+				</view>
+			</view>
+			
+			
+			
 			<view class="input-wrap">
 				<u--input
 				    placeholder="街道/社区"
@@ -162,12 +179,19 @@
 			@cancel="cancel"
 		></u-datetime-picker>
 		
+		
+		<u-picker :show="areaShow" :columns="columns" @cancel="cancel" @confirm="areaConfirm" keyName="name"></u-picker>
+		
+		
 	</view>
 	
 	
 </template>
 
 <script>
+	
+	
+	
 	export default {
 		
 		props: {
@@ -196,12 +220,117 @@
 				 
 				fileList1: [],
 				
-				dateTimeShow: false 
+				dateTimeShow: false,
+				 
+				areaShow: false,
+				columns: [
+					
+				],
+				
+				
+				
+				province: 110100,
+				provinceStr: '北京省',
+				city: 110100,
+				cityStr: '市辖区',
+				area: 110101,
+				areaStr: '东城区',
+				
+				
+				provinceList: [],
+				cityList: [],
+				areaList: [],
+				
+				currentStr: ''
+			}
+		},
+		
+		watch: {
+			'province'() {
+				this.getCity()
+				this.getArea() 
+			},
+			
+			'city'() {
+				this.getArea() 
 			}
 		},
 		
 		
+		onLoad() {
+
+		},
+		
+		mounted() {
+			
+			
+		},
+		
+		
 		methods: {
+			
+			onSelectArea(typeStr) {
+				this.areaShow = true
+				
+				this.currentStr = typeStr
+				
+				this[`get${typeStr}`]()
+				
+			},
+			
+			async getProvince() {
+				this.columns=[]
+				let data = await this.$request('/content/area/selectProvince',{},'GET')
+				
+				if (data) {
+					this.provinceList = data.data
+					this.columns.push(this.provinceList)
+					
+					
+				}
+				
+			},
+			
+			async getCity() {
+				this.columns=[]
+				let data = await this.$request(`/content/area/selectCity?code=${this.province}`,{},'GET')
+				
+				if (data) {
+					this.cityList = data.data
+					this.columns.push(this.cityList)
+					
+					this.city = this.cityList[0].code
+					
+					this.cityStr = this.cityList[0].name
+
+				}
+				
+			}, 
+			
+			async getArea() {
+				this.columns=[]
+				let data = await this.$request(`/content/area/selectarea?code=${this.city}`,{},'GET')
+				
+				if (data) {
+					this.areaList = data.data
+					this.columns.push(this.areaList)
+					
+					this.area = this.areaList[0].code
+					
+					this.areaStr = this.areaList[0].name
+				}
+				
+			}, 
+			
+			areaConfirm(e) {
+				
+				this[this.currentStr.toLowerCase()] = e.value[0].code
+				
+				this[`${this.currentStr.toLowerCase()}Str`] = e.value[0].name
+					
+		        this.areaShow = false
+			},
+			
 			formatter(type, value) {
 				if (type === 'year') {
 					return `${value}年`
@@ -218,6 +347,7 @@
 			
 			cancel() {
 				this.dateTimeShow = false
+				this.areaShow = false
 			},
 			
 			confirm(e) {
@@ -410,5 +540,24 @@
 		color: #fff;
 		background: #1250E5;
 	}
+	
+	
+	
+	.area-wrap {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 20rpx;
+		.item {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0 30rpx;
+			width: 200rpx;
+			height: 100rpx;
+			background: #F6F8FC;
+			border-radius: 13rpx;
+		}
+	}
+	
 	
 </style>

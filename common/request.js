@@ -33,19 +33,21 @@ const request = (url, data, type,loading = true) => {
 				if(res.data.code == 1001) {
 					resolve(res.data)
 				} else if (res.data.code == 301) {
+					resolve(res.data)
 					uni.showToast({
 						title: res.data.msg,
 						duration: 2000,
 						icon: "none"
 					})
 				} else if (res.data.code == 500) {
+					resolve(res.data)
 					uni.showToast({
 						title: res.data.msg,
 						duration: 2000,
 						icon: "error"
 					})
 				} else {
-					reject(res.data)
+					resolve(res.data)
 					uni.showToast({
 						title: res.data.msg,
 						duration: 2000,
@@ -53,7 +55,7 @@ const request = (url, data, type,loading = true) => {
 					})
 				}
 			} else {
-				resolve(res)
+				reject(res)
 				uni.showToast({
 					title: '请求异常!',
 					duration: 1500,
@@ -65,29 +67,6 @@ const request = (url, data, type,loading = true) => {
 				uni.hideLoading()
 			}
 			
-			
-			// if (res.data.code == 0) {  //请求成功
-			// 	resolve(res.data)
-			// } else if (res.data.code == -2) {  //登录失效
-			// 	stroe.remove("easyLive-token")
-			// 	uni.showToast({
-			// 		title: res.data.msg,
-			// 		duration: 1500,
-			// 		icon: "none"
-			// 	})
-			// 	setTimeout(() => {
-			// 		uni.navigateTo({
-			// 			url: '../login/login'
-			// 		})
-			// 	}, 1500)
-			// } else {  
-			// 	resolve(res.data)
-			// 	uni.showToast({
-			// 		title: res.data.msg,
-			// 		duration: 1500,
-			// 		icon: "none"
-			// 	})
-			// }
 		}).catch((response) => {
 				uni.showToast({
 					title: '请求失败!',
@@ -95,7 +74,7 @@ const request = (url, data, type,loading = true) => {
 					icon: "none"
 				})
 				reject(response)
-				uni.hideLoading()
+				// uni.hideLoading()
 			}
 		)
 	})

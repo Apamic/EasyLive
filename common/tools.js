@@ -34,8 +34,13 @@ tools.toast=(val)=>{
 
 //页面跳转
 tools.jump=(path)=>{
+	let pages = getCurrentPages()
+	let currentRoute  = pages[pages.length-1].route
+	let allowPath = ['pages/login/login','pages/login/code']
+	//console.log(currentRoute)
+	
 	const token = stroe.get("easyLive-token") || ''
-	if (token) {
+	if (token || allowPath.includes(currentRoute)) {
 		uni.navigateTo({
 			url:path
 		})

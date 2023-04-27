@@ -44,7 +44,7 @@
 		data() {
 			return {
 				currentItem: {},
-				current: 1
+				current: 0
 			}
 		},
 		

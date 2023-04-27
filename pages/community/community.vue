@@ -13,7 +13,10 @@
 		
 		<!-- <view class="wrap"> -->
 			<view v-show="currentTab == 0">
+				<!-- <forum :forumList="forumList"></forum> -->
+				
 				<forum></forum>
+				
 			</view>
 			
 			<view v-show="currentTab == 1">
@@ -42,12 +45,12 @@
 					{
 						name: '北漂之家',
 					},
-					{
-						name: '成长中心',
-					},
-					{
-						name: '学无止境'
-					}
+					// {
+					// 	name: '成长中心',
+					// },
+					// {
+					// 	name: '学无止境'
+					// }
 				],
 				
 				currentTab: 0,
@@ -55,10 +58,33 @@
 				list: ['保洁', '餐厅', '客房', '厨师','司机'],
 				current: 0,
 				
+				
+				forumList: []
+				
 			}
 		},
 		
+		onShow() {
+			// this.getBbsList()
+		},
+		
+		
 		methods: {
+			
+			
+			// getBbsList() {
+			// 	let data = this.$request('/content/bbs/getBbsList',{},'GET')
+				
+			// 	if (data) {
+					
+			// 		this.forumList = data.data
+					
+					
+			// 	}
+				
+			// },
+			
+			
 			onTab(item) {
 				console.log('item', item);
 				this.currentTab = item.index

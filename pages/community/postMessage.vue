@@ -12,7 +12,7 @@
 			  ></u--input>
 			<u-line color="#EEEEEE"></u-line>
 			<view style="padding: 10px">
-				<u--textarea v-model="form.txt" placeholder="请输入内容" height="200" maxlength="600" count></u--textarea>
+				<u--textarea v-model="form.content" placeholder="请输入内容" height="200" maxlength="600" count confirm-type="send"></u--textarea>
 			</view>
 			
 			<view style="padding: 10px;">
@@ -26,9 +26,13 @@
 					width="110"
 					height="110"
 				>
-				
 				</u-upload>
 			</view>
+			
+			<view class="but-wrap">
+				<u-button class="but" text="发贴" @click="onAddBbs()" size="large"></u-button>
+			</view>
+			
 			
 		</view>
 		
@@ -42,7 +46,7 @@
 			return {
 				form: {
 					title: '',
-					txt: ''
+					content: ''
 				},
 				
 				fileList1: []
@@ -94,7 +98,26 @@
 						}
 					});
 				})
-			}
+			},
+			
+			
+			async onAddBbs() {
+				
+				let {title,content} = this.form
+				
+				if (!title) this.$tools.toast('请输入标题')
+				if (!content) this.$tools.toast('请输入内容')
+				
+				let data = await this.$request('/content/bbs/addBbs',this.form)
+				
+				if (data) {
+					this.$tools.toast('发贴成功,等待审核')
+					setTimeout(() => {
+						this.$tools.back(1)
+					},2000)
+				}
+			} 
+			
 		},
 		
 		components: {
@@ -111,5 +134,14 @@
 </style>
 
 <style lang="scss" scoped>
+	.but-wrap {
+		padding: 80rpx 0 0;
+	}
+	
+	.but {
+		width: 340rpx;
+		color: #fff;
+		background: #1250E5;
+	}
 	
 </style>

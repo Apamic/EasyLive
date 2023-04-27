@@ -64,8 +64,8 @@
 				}
 				
 				this.$request(`/user/empLogin${this.$u.queryParams(params)}`,{},'GET').then(res => {
-					console.log(res.token)
-					this.$store.set("easyLive-token", res.token)
+					//console.log(res.token)
+					this.$store.set("easyLive-token", res.msg)
 					this.$tools.toast('登录成功')
 					setTimeout(() => {
 						uni.switchTab({

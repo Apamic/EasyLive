@@ -3,7 +3,7 @@
 		<navTop :title="'岗位详情'" bgColor="#F3F4F5"></navTop>
 		<view class="content-wrap">
 			<view class="card-wrap flex-between">
-				<image :src="currentItem.enterpriseImage" mode="widthFix" style="width: 144rpx;border-radius: 10rpx;"></image>
+				<image :src="currentItem.enterpriseImage" style="width: 144rpx;height:144rpx;border-radius: 10rpx;"></image>
 				<view class="flex-column flex-between flex-1" style="padding-left: 30rpx;">
 					<text style="color: #161D26;font-size: 32rpx;font-weight: 700;">{{currentItem.positionName}}</text>
 					<text style="color: #7A8393;font-size: 22rpx;">还需<text style="color: #EC6735;">{{currentItem.positionNum - currentItem.enrollment}}</text>人</text>

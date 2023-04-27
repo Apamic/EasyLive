@@ -67,16 +67,17 @@
 			},
 			
 			
-			code() {
+			async code() {
 				if (this.allow) {
 					if(!verification.mobile(this.phone)) return this.$tools.toast("请输入正确手机号!")
 					
-					this.$request('/user/sendmessage',{
+					let data = await this.$request('/user/sendmessage',{
 						phone: this.phone
-					}).then(res => {
-						console.log(res)
-						this.$tools.jump(`./code?phone=${this.phone}`)
 					})
+					
+					if (data) {
+						this.$tools.jump(`./code?phone=${this.phone}`)
+					}
 					
 				} else {
 					this.$tools.toast('请勾选服务协议')

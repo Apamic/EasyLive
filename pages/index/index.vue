@@ -119,7 +119,7 @@
 			async getToIndex() {
 				let data = await this.$request('/user/toIndex')
 				
-				console.log(data)
+				// console.log(data)
 				if (data) {
 					this.indexData = data.data
 				}

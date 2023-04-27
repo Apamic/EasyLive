@@ -3,16 +3,14 @@
 		<view class="flex" style="margin-bottom: 20rpx;">
 			<u-avatar src="@/static/mine/img.png" shape="circle" size="30"></u-avatar>
 			<view class="flex-column" style="margin-left: 20rpx;">
-				<text class="name">ERIC MARTINEZ</text>
-				<text class="date">2023-12-22 00:00:00</text>
+				<text class="name">{{item.createBy}}</text>
+				<text class="date">{{item.createDate | formatTime('YMDHMS')}}</text>
 			</view>
 		</view>
 		<view style="margin-left: 70rpx;">
 			<view style="margin-bottom: 20rpx;">
 				<text class="txt">
-					用户自主管理私钥,资产一手掌握 安全隔离,数据加密
-					等获多项安全专利技术用户自主管理私钥,资产一手
-					掌握 安全隔离,数据加密等获多项安全专利技术
+					{{item.comment}}
 				</text>
 			</view>
 			<u-line color="#DADEE6"></u-line>
@@ -32,6 +30,11 @@
 			self: {
 				type: Boolean,
 				default: false
+			},
+			
+			item: {
+				type: Object,
+				default: () => {}
 			}
 		},
 		

@@ -1,18 +1,15 @@
 <template>
 	<view class="card-wrap flex-column relative">
-		<text class="title">你听过最恐怖的同事是什么样子？</text>
+		<text class="title">{{item.title}}</text>
 		<view class="flex" style="margin-bottom: 20rpx;">
-			<u-avatar src="../../static/mine/img.png" shape="circle" size="30"></u-avatar>
+			<u-avatar :src="item.img" shape="circle" size="30"></u-avatar>
 			<view class="flex-column" style="margin-left: 20rpx;">
-				<text class="name">ERIC MARTINEZ</text>
-				<text class="date">2023-12-22 00:00:00</text>
+				<text class="name">{{item.createBy}}</text>
+				<text class="date">{{item.createDate | formatTime('YMDHMS')}}</text>
 			</view>
 		</view>
 		<text class="txt" :class="hideTxt ? 'hideTxt' : ''">
-			用户自主管理私钥,资产一手掌握 安全隔离,数据加密
-			等获多项安全专利技术用户自主管理私钥,资产一手
-			掌握 安全隔离,数据加密等获多项安全专利技术
-			数据加密等获多项安全专利技术数据加密等获多项安全专利技术
+			{{item.content}}
 		</text>
 		<view class="img-wrap">
 			<image src="../static/logo.png" mode="widthFix" style="width: 200rpx;height: 200rpx;" v-for="(item,index) in 9" :key="index"></image>
@@ -22,7 +19,7 @@
 			<slot></slot>
 		</view>
 		
-		<view class="reaction-wrap">
+		<view class="reaction-wrap" v-if="hideTxt">
 			<!-- <view class="reaction">
 				<u-icon name="share-square" size="22"></u-icon>
 				<text>转发</text>
@@ -46,7 +43,11 @@
 			hideTxt: {
 				type:Boolean,
 				default: true 
-			}
+			},
+			item: {
+				type: Object,
+				default: () => {}
+			},
 		},
 		
 		data() {
