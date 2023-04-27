@@ -7,6 +7,10 @@
 			</view>
 			
 			<view class="card-wrap">
+				<view class="" style="padding: 30rpx;">
+					<text style="font-size: 28rpx;color: #21284D;font-weight: 700;">评论</text>
+				</view>
+				<u-line color="#DADEE6"></u-line>
 				<view style="padding: 30rpx;margin-bottom: 20rpx;" v-for="(item,index) in commentList" :key="item.id">
 					
 					<commentRow :self="self" :item="item"></commentRow>
