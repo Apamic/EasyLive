@@ -180,7 +180,7 @@
 		></u-datetime-picker>
 		
 		
-		<u-picker :show="areaShow" :columns="columns" @cancel="cancel" @confirm="areaConfirm" keyName="name"></u-picker>
+		<u-picker :show="areaShow" :columns="columns" @cancel="cancel" @confirm="areaConfirm" keyName="name" ></u-picker>
 		
 		
 	</view>
@@ -214,7 +214,13 @@
 					address: '',
 					healthState: 0,
 					healthStatedes: '',
-					salaryExpectation: ''
+					salaryExpectation: '',
+					provinceCode: '',
+					provinceName: '',
+					cityCode: '',
+					cityName: '',
+					areaCode: '',
+					areaName: ''
 				},
 				 
 				 
@@ -302,7 +308,15 @@
 				if (!salaryExpectation) return this.$tools.toast('请输入您期望的薪资')
 				
 				this.form.birthDay = this.result(this.form.birthDay,'date')
-	
+				
+				this.form.provinceCode = this.province
+				this.form.provinceName = this.provinceStr
+				this.form.cityCode = this.city
+				this.form.cityName = this.cityStr
+				this.form.areaCode = this.area
+				this.form.areaName = this.areaStr
+				
+				
 				let data = await this.$request('/checkIn/saveCheckIn',this.form)
 				
 				if (data) {

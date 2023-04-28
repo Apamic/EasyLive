@@ -6,7 +6,7 @@
 		<view class="row">
 			<text class="label">起始日期:</text>
 			<text class="val">
-				2023/03/01 -  2023/02/22
+				{{item.begin_time | formatTime('YMD')}} -- {{item.end_time | formatTime('YMD')}}
 			</text>
 		</view>
 		<view class="row">
@@ -18,13 +18,13 @@
 		<view class="row">
 			<text class="label">岗位类型:</text>
 			<text class="val">
-				兼职
+				{{item.positionType}}
 			</text>
 		</view>
 		<view class="row">
 			<text class="label">名称:</text>
 			<text class="val">
-				酒店客房服务生
+				{{item.positionName}}
 			</text>
 		</view>
 		<view class="row">
@@ -48,13 +48,18 @@
 		<view class="row">
 			<text class="label">年龄:</text>
 			<text class="val">
-				50岁以下
+				{{item.ageRequire}}岁以下
 			</text>
 		</view>
 		<view class="row">
 			<text class="label">身高:</text>
 			<text class="val">
-				不限
+				<text v-if="item.heightRequire">
+					{{`${item.heightRequire}cm`}}
+				</text>
+				<text v-else>
+					不限
+				</text>
 			</text>
 		</view>
 		<view class="row">

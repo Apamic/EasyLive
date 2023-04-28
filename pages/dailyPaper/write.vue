@@ -11,6 +11,8 @@
 				name="1"
 				multiple
 				:maxCount="1"
+				width="150"
+				height="150"
 			>
 				
 			</u-upload>

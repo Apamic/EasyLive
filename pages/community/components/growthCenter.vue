@@ -4,7 +4,7 @@
 			<u-subsection :list="typeList" :current="current" @change="sectionChange" fontSize="15" inactiveColor="#ADB1C0" activeColor="#000000" keyName="defineName"></u-subsection>
 		</view>
 		
-		<scroll-view scroll-y class="scroll-wrap" :style="{height:(navHeight - 132)+'px'}">
+		<scroll-view scroll-y class="scroll-wrap" :style="{height:navHeight+'px'}">
 			
 			<view class="list-wrap">
 				<view class="column">
@@ -114,7 +114,7 @@
 
 <style lang="scss" scoped>
 	.wrap {
-		padding: 20rpx 10rpx;
+		padding: 20rpx 30rpx;
 		height: 120rpx;
 	}
 	

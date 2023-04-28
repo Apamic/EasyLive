@@ -3,9 +3,7 @@
 		<navTop :title="'职业规划'" bgColor="#fff"></navTop>
 		
 		<view class="content-wrap">
-			
 			<view class="left row">
-				
 				<u-avatar src="@/static/logo.png"></u-avatar>
 				
 				<view class="txt">
@@ -13,7 +11,6 @@
 						123456789456
 					</text>
 				</view>
-				
 			</view>
 			
 			<view class="right row">
@@ -23,8 +20,6 @@
 						123456789456
 					</text>
 				</view>
-				
-				
 			</view>
 		</view>
 		
@@ -46,13 +41,16 @@
 			return {
 				src: '',
 				
-				
+				dialogueList: []
 				
 			}
 		},
 		
 		onReady() {
-			this.getCultivateCategory()
+			
+			this.careerHello()
+			
+			
 		},
 		
 		
@@ -61,11 +59,11 @@
 				console.log(val)
 			},
 			
-			async getCultivateCategory() {
-				let data = await this.$request('/front/cultivate/cultivateList?cultivateCategory=100100020001',{},'GET')
+			async careerHello() {
+				let data = await this.$request('/content/career/hello',{},'GET')
 				
 				if (data) {
-					console.log('123')
+					console.log(data.data)
 				}
 				
 			}

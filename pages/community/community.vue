@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view style="height: 110rpx;">
+		<view class="tabs-wrap align-center">
 			<u-tabs :list="tabsList" @click="onTab"  lineColor="#000000" lineWidth="30"
 			:activeStyle="{
 			    color: '#303133',
@@ -12,7 +12,7 @@
 		</view>
 	
 		<!-- <view class="wrap"> -->
-			<view v-show="currentTab == 0">
+			<view v-if="currentTab == 0">
 				<!-- <forum :forumList="forumList"></forum> -->
 				
 				<forum></forum>
@@ -24,7 +24,7 @@
 				<growthCenter></growthCenter>
 			</view>
 			
-			<view v-show="currentTab == 2">
+			<view v-if="currentTab == 2">
 				<study></study>
 			</view>
 		<!-- </view> -->
@@ -63,24 +63,17 @@
 		},
 		
 		onShow() {
-			// this.getBbsList()
+			
 		},
+		
+		
+		
 		
 		
 		methods: {
 			
 			
-			// getBbsList() {
-			// 	let data = this.$request('/content/bbs/getBbsList',{},'GET')
-				
-			// 	if (data) {
-					
-			// 		this.forumList = data.data
-					
-					
-			// 	}
-				
-			// },
+			
 			
 			
 			onTab(item) {
@@ -113,6 +106,10 @@
 <style lang="scss" scoped>
 	.wrap {
 		padding: 0 24rpx;
+	}
+	
+	.tabs-wrap {
+		height: 110rpx;
 	}
 	
 	

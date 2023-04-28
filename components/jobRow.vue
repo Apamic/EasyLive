@@ -25,10 +25,10 @@
 					</view>
 					
 					<view style="margin-right: 10rpx;">
-						<u-tag  text="3月2日-3月10日" size="mini" bgColor="#F3F5F9" borderColor="#F3F5F9" color="#7A8393"></u-tag>
+						<u-tag  :text="`${$tools.formatTime(item.begin_time,'MD')}-${$tools.formatTime(item.end_time,'MD')}`" size="mini" bgColor="#F3F5F9" borderColor="#F3F5F9" color="#7A8393"></u-tag>
 					</view>
 					
-					<u-tag :text="item.salaryType" size="mini" bgColor="#F3F5F9" borderColor="#F3F5F9" color="#7A8393"></u-tag>
+					<!-- <u-tag :text="item.salaryType" size="mini" bgColor="#F3F5F9" borderColor="#F3F5F9" color="#7A8393"></u-tag> -->
 				</view>
 			</view>
 		</view>

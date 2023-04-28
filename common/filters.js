@@ -19,7 +19,9 @@ Vue.filter('formatTime',(value,type) => {
         dataTime = hour+":" + minute+":" + second;
     }else if(type == "YM"){
         dataTime = year + "-" + month;
-    }
+    }else if (type == "MD") {
+		dataTime = month + "月" + day + "日";
+	}
     return dataTime;//将格式化后的字符串输出到前端显示
 }) 
 
