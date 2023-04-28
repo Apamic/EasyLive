@@ -1,14 +1,13 @@
 <template>
 	<view class="card-wrap flex-column" :style="{border: `2rpx solid ${borderColor}`,boxShadow: borderColor == 'transparent' ? '0 3rpx 10rpx 2rpx rgba(25, 60, 83, 0.16)' : ''}">
-		<image src="../static/logo.png" style="width: 330rpx;height: 330rpx;"></image>
+		<image :src="item.img" style="width: 330rpx;height: 330rpx;"></image>
 		<view class="wrap">
-			<text class="title">{{item.text}}</text>
+			<text class="title">{{item.title}}</text>
 			<view class="align-center" style="padding-top: 20rpx;">
 				<image src="../static/icon/play.png" mode="widthFix" style="margin-right: 10rpx; width: 24rpx;"></image>
 				<text class="num">1888</text>
 			</view>
 		</view>
-		
 	</view>
 </template>
 

@@ -4,15 +4,15 @@
 		
 		<view>
 			<view>
-				<video id="myVideo" :src="currentItem.videoPath"
+				<video id="myVideo" :src="currentItem.videoPath || currentItem.videoUrl"
 					@error="videoErrorCallback" style="width: 100%;height: 750rpx;" controls></video>
 			</view>
 			
 			<view class="content-wrap">
 				<view class="flex-column" style="padding: 0 40rpx;">
-					<text class="title">{{currentItem.centerName}}</text>
+					<text class="title">{{currentItem.centerName || currentItem.title}}</text>
 					<text class="txt">
-						{{currentItem.centerDes}}
+						{{currentItem.centerDes || currentItem.content}}
 					</text>
 				</view>				
 			</view>
@@ -32,7 +32,7 @@
 		onLoad(option) {
 			if (option.item) {
 				this.currentItem = JSON.parse(option.item)
-				console.log(this.currentItem,'currentItem')
+				//console.log(this.currentItem,'currentItem')
 			}
 			
 		},

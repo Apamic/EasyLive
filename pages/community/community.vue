@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view style="padding-bottom: 20rpx;">
+		<view style="height: 110rpx;">
 			<u-tabs :list="tabsList" @click="onTab"  lineColor="#000000" lineWidth="30"
 			:activeStyle="{
 			    color: '#303133',
@@ -10,7 +10,7 @@
 			
 			></u-tabs>
 		</view>
-		
+	
 		<!-- <view class="wrap"> -->
 			<view v-show="currentTab == 0">
 				<!-- <forum :forumList="forumList"></forum> -->
@@ -19,9 +19,7 @@
 				
 			</view>
 			
-			<view v-show="currentTab == 1">
-				
-				<!-- <u-subsection :list="list" :current="current" @change="sectionChange" fontSize="15" inactiveColor="#ADB1C0" activeColor="#000000"></u-subsection> -->
+			<view v-if="currentTab == 1" style="background: #fff;">
 				
 				<growthCenter></growthCenter>
 			</view>
@@ -45,9 +43,9 @@
 					{
 						name: '北漂之家',
 					},
-					// {
-					// 	name: '成长中心',
-					// },
+					{
+						name: '成长中心',
+					},
 					// {
 					// 	name: '学无止境'
 					// }

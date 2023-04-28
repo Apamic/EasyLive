@@ -78,7 +78,7 @@
 							<view class="flex-column flex-around">
 								<text class="secondary-text">{{item.beginTime}}-{{item.endTime}}</text>
 								<text class="name" style="font-size: 34rpx;">{{item.activityName}}</text>
-								<text  class="secondary-text">第二期</text>
+								<!-- <text  class="secondary-text">第二期</text> -->
 							</view>
 							<image :src="item.actImg ? item.actImg : '../../static/logo.png'"  style="width: 210rpx;height: 140rpx;"></image>
 						</view>

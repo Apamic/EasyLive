@@ -190,10 +190,10 @@
 
 <script>
 	
-	
+	import pcaArea from "@/mixis/pcaArea.vue"
 	
 	export default {
-		
+		mixins: [pcaArea],
 		props: {
 			type: {
 				type: Number,
@@ -222,39 +222,9 @@
 				
 				dateTimeShow: false,
 				 
-				areaShow: false,
-				columns: [
-					
-				],
-				
-				
-				
-				province: 110100,
-				provinceStr: '北京省',
-				city: 110100,
-				cityStr: '市辖区',
-				area: 110101,
-				areaStr: '东城区',
-				
-				
-				provinceList: [],
-				cityList: [],
-				areaList: [],
-				
-				currentStr: ''
 			}
 		},
 		
-		watch: {
-			'province'() {
-				this.getCity()
-				this.getArea() 
-			},
-			
-			'city'() {
-				this.getArea() 
-			}
-		},
 		
 		
 		onLoad() {
@@ -268,68 +238,6 @@
 		
 		
 		methods: {
-			
-			onSelectArea(typeStr) {
-				this.areaShow = true
-				
-				this.currentStr = typeStr
-				
-				this[`get${typeStr}`]()
-				
-			},
-			
-			async getProvince() {
-				this.columns=[]
-				let data = await this.$request('/content/area/selectProvince',{},'GET')
-				
-				if (data) {
-					this.provinceList = data.data
-					this.columns.push(this.provinceList)
-					
-					
-				}
-				
-			},
-			
-			async getCity() {
-				this.columns=[]
-				let data = await this.$request(`/content/area/selectCity?code=${this.province}`,{},'GET')
-				
-				if (data) {
-					this.cityList = data.data
-					this.columns.push(this.cityList)
-					
-					this.city = this.cityList[0].code
-					
-					this.cityStr = this.cityList[0].name
-
-				}
-				
-			}, 
-			
-			async getArea() {
-				this.columns=[]
-				let data = await this.$request(`/content/area/selectarea?code=${this.city}`,{},'GET')
-				
-				if (data) {
-					this.areaList = data.data
-					this.columns.push(this.areaList)
-					
-					this.area = this.areaList[0].code
-					
-					this.areaStr = this.areaList[0].name
-				}
-				
-			}, 
-			
-			areaConfirm(e) {
-				
-				this[this.currentStr.toLowerCase()] = e.value[0].code
-				
-				this[`${this.currentStr.toLowerCase()}Str`] = e.value[0].name
-					
-		        this.areaShow = false
-			},
 			
 			formatter(type, value) {
 				if (type === 'year') {

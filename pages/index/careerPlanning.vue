@@ -44,20 +44,40 @@
 	export default {
 		data() {
 			return {
-				src: ''
+				src: '',
+				
+				
+				
 			}
 		},
+		
+		onReady() {
+			this.getCultivateCategory()
+		},
+		
 		
 		methods: {
 			onSend(val) {
 				console.log(val)
+			},
+			
+			async getCultivateCategory() {
+				let data = await this.$request('/front/cultivate/cultivateList?cultivateCategory=100100020001',{},'GET')
+				
+				if (data) {
+					console.log('123')
+				}
+				
 			}
+			
+			
 		},
 		
 		components: {
 			navTop,
 			sendBlock
-		}
+		},
+		
 	}
 </script>
 
